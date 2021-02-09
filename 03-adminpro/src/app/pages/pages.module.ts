@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { ChartsModule } from 'ng2-charts';
 import { DonutComponent } from '../components/donut/donut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { DonutComponent } from '../components/donut/donut.component';
     PagesComponent,
     IncrementadorComponent,
     DonutComponent,
+    AccountSettingsComponent,
   ],
   exports: [
     DashboardComponent,
@@ -28,6 +30,7 @@ import { DonutComponent } from '../components/donut/donut.component';
     PagesComponent,
     IncrementadorComponent,
     DonutComponent,
+    AccountSettingsComponent
   ],
   imports: [
     CommonModule,
