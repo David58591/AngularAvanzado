@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 
 @Component({
@@ -9,6 +9,10 @@ import { SettingsService } from '../services/settings.service';
 })
 export class PagesComponent implements OnInit {
 
+  @Input()
+routerLinkActiveOptions: {
+    exact: boolean;
+}
   public elemTheme = document.querySelector('#theme');
   constructor(private settingsService : SettingsService) { }
 
