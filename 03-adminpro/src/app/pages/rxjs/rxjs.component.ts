@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable,interval } from 'rxjs';
-import { retry,take,map } from 'rxjs/operators';
+import { retry,take,map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: [],
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy{
   
+  public subInterval$;
   constructor() {
     // this.retornaObservable()
     //   .pipe(retry(2))
@@ -17,11 +18,14 @@ export class RxjsComponent implements OnInit {
     //     (err) => console.log('Error', err),
     //     () => console.info('se ha terminado')
     //   );
-    this.retornaIntervalo().pipe(retry(2)).subscribe( console.log);
+     this.subInterval$ =  this.retornaIntervalo().pipe(retry(2)).subscribe( console.log);
   }
 
   ngOnInit(): void {
- 
+  
+  }
+  ngOnDestroy() : void {
+    this.subInterval$.unsubscribe();
   }
   retornaObservable() {
     let i = -1;
@@ -42,10 +46,14 @@ export class RxjsComponent implements OnInit {
   }
 
   retornaIntervalo() {
-    return interval(1000).pipe(take(4),map(valor =>{
+    return interval(300)
+    .pipe(
+      map(valor =>{
         valor = valor +1;
-      return 'hola Mundo '+ ' ' + valor;
-    } ));
+       return valor;
+    } ),
+      filter(valor => (valor % 2 === 0 )? true: false )
+    );
    
   }
 }
