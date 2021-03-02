@@ -1,6 +1,5 @@
 const express = require('express');
 const { dbConnection } = require('./database/config');
-require('dotenv').config();
 const cors = require('cors');
 
 // Crear el servidor express
@@ -11,17 +10,17 @@ const app = express();
 //Configurar Cors
 app.use(cors());
 
+//Lectura y parseo del body
+
+app.use(express.json())
 //Base de datos
-dbConnection();
+dbConnection().catch(error => (console.log(error)));
 console.log(process.env);
 
-app.get('/', (req,res) => {
-   
-    res.status(400).json({
-        ok: true,
-        msg: 'Hola Mundo'
-    })
-});
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
+
+
 
 
 app.listen(process.env.PORT, () => {
