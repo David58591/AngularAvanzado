@@ -20,13 +20,14 @@ const medicoSchema = Schema({
     },
     hospital: {
         type:Schema.Types.ObjectId,
-        ref: 'Hospital'
+        ref: 'Hospital',
+        required: true
     }
 });
 
 medicoSchema.method('toJSON' ,function () {
-    const {__v , ...object} = this.toObject();
-    
+    const {_id, __v , ...object} = this.toObject();
+    object.id = _id;
     return object;
 })
 module.exports = model('Medico', medicoSchema)

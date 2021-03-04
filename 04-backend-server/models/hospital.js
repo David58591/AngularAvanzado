@@ -13,9 +13,9 @@ const hospitalSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Usuario'
     }
-}, {Collections : 'Hospitales'});
+}, { collection: 'hospitales'});
 
-usuarioSchema.method('toJSON' ,function () {
+hospitalSchema.method('toJSON' ,function () {
     const {__v,  ...object} = this.toObject();
     return object;
 })
