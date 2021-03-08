@@ -3,15 +3,16 @@ const response = require("express");
 const bcrypt = require('bcryptjs');
 
 const getUsuarios = async (req, res) => {
+  console.log(req.query);
   const desde  = Number(req.query.desde) || 0;
-  const [usuarios, total] = await Promise.all(
-    Usuario.find({}, "nombre email role google")
+  const [usuarios, total] = await Promise.all([
+    Usuario.find({}, 'nombre email role google img')
     .skip(desde)
     .limit(5),
-    Usuario.count()
-  );
+    Usuario.countDocuments()
+  ]);
   return res.status(400).json({
-    ok: true,
+    ok: false,
     usuarios,
     total
   });

@@ -1,12 +1,20 @@
-/* ruta api/uploads*/
+/*
+
+    ruta: api/uploads/
+*/
+const { Router } = require('express');
 const expressFileUpload = require('express-fileupload');
-const {fileUpload} = require('../controllers/uploads')
-const {Router} = require('express')
-const router = Router()
 
-router.use(expressFileUpload())
+const { fileUpload, retornaImagen } = require('../controllers/uploads');
 
-router.put("/:tipo/:id",fileUpload)
+const router = Router();
+
+router.use( expressFileUpload() );
+
+router.put('/:tipo/:id', fileUpload );
+
+router.get('/:tipo/:foto', retornaImagen );
+
 
 
 module.exports = router;
