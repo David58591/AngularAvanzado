@@ -35,7 +35,7 @@ const crearMedico = async(req, res = response) => {
 
    
 }
-const actualizarMedico = (req, res = response) => {
+const actualizarMedico = async (req, res = response) => {
     try {
         const id = req.params.id;
         const { } = req.body;
@@ -77,7 +77,7 @@ const actualizarMedico = (req, res = response) => {
            })
          }   
 }
-const borrarMedico = (req, res = response) => {
+const borrarMedico =async (req, res = response) => {
      try {
 const id = req.params.id;
 const { } = req.body;
