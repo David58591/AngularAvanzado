@@ -17,6 +17,11 @@ app.use(express.json())
 dbConnection().catch(error => (console.log(error)));
 console.log(process.env);
 
+
+// DIrectorio público
+app.use(express.static('public'))
+// Rutas
+
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/login', require('./routes/auth'));
 app.use('/api/hospitales', require('./routes/hospitales'));
